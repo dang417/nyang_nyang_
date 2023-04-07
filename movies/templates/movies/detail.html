@@ -1,0 +1,25 @@
+{% extends 'base.html' %}{% block content %}
+<h1>DETAIL</h1>
+<hr />
+{% comment %} <p>영화 번호 : {{movies.id}}</p> {% endcomment %}
+<p>영화 제목 : {{movies.title}}</p>
+{% comment %} <p>관객수 : {{movies.audience}}</p> {% endcomment %}
+{% comment %} <p>개봉일 : {{movies.release_date}}</p> {% endcomment %}
+{% comment %} <p>장르 : {{movies.genre}}</p> {% endcomment %}
+{% comment %} <p>평점 : {{movies.score}}</p> {% endcomment %}
+<p>줄거리 : {{movies.description}}</p>
+
+<!--만약 이미지가 있으면 조건문 들어감-->
+{% if movies.actor_image %}
+<!--이미지태그 통과-->
+<img src="{{movies.actor_image.url}}" alt="" />
+<!--이미지 없으면 조건문 쓰루, ValueError 오류 안남-->
+{% endif %}
+
+<a href="{% url 'movies:update' movies.pk %}">UPDATE</a>
+<form action="{% url 'movies:delete' movies.pk %}">
+  {% csrf_token %}
+  <input type="submit" value="DELETE" />
+</form>
+<a href="{% url 'movies:index' %}">BACK</a>
+{% endblock content %}
