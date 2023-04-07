@@ -10,7 +10,7 @@
 <body>
   <div id="nav">
     {% if user.is_authenticated %}
-      <h3 id="user-hello"><i>Hello, {{user}}</i></h3>
+      <h3 id="user-hello">Hello, {{user}}</h3>
       <a href="{% url 'accounts:update' %}">회원정보수정</a>
       <form action="{% url 'accounts:logout' %}" method="POST">
         {% csrf_token %}
